@@ -1,7 +1,6 @@
 ﻿using GigHubApp.Models;
 using GigHubApp.ViewModels;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -30,10 +29,16 @@ namespace GigHubApp.Controllers
         [HttpPost]
         public ActionResult Create(GigFormViewModel gigFormViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                gigFormViewModel.Genres = _context.Genres.ToList();
+                return View("Create", gigFormViewModel);
+            }
+
             var gig = new Gig()
             {
                 ArtistId = User.Identity.GetUserId(),
-                DateTime = DateTime.Parse(String.Format("{0} {1}", gigFormViewModel.Date, gigFormViewModel.Time)),
+                DateTime = gigFormViewModel.GetDateTime(),
                 GenreId = gigFormViewModel.Genre,
                 Venue = gigFormViewModel.Venue
             };
