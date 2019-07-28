@@ -22,7 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
-
+span.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
 /* Bootstrap overrides */
 .navbar-inverse {
     background-color: #ff4342;
@@ -66,5 +69,5 @@ textarea {
 .dropdown-menu {
     font-size: 17px;
     box-shadow: none;
-    webkit-box-shadow: none;
+    -webkit-box-shadow: none;
 }
