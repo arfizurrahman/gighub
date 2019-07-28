@@ -118,3 +118,13 @@ span.field-validation-error {
 .gigs > li .details .genre {
     font-size: 15px;
 }
+
+.navbar-inverse .navbar-toggle {
+    border-color: #fff;
+}
+    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+        background-color: #cc2524;
+    }
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #cc2524;
+}
