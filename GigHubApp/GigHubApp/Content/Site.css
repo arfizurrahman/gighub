@@ -69,9 +69,9 @@ span.field-validation-error {
 
 .form-control {
     font-size: 17px;
-    padding: 20px 15px;
     -ms-border-radius: 7px;
     border-radius: 7px;
+    height: 44px;
 }
 .form-control:focus {
     border-color: #2196f3;
@@ -137,7 +137,14 @@ span.field-validation-error {
 .gigs > li .details .genre {
     font-size: 15px;
 }
+    .gigs > li .actions {
+        font-size: 15px;
+        display: none;
+    }
 
+.gigs > li:hover .actions {
+    display: block;
+}
 .navbar-inverse .navbar-toggle {
     border-color: #fff;
 }
@@ -147,3 +154,4 @@ span.field-validation-error {
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color: #cc2524;
 }
+
