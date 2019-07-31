@@ -16,7 +16,7 @@ namespace GigHubApp.Controllers
             _context = new ApplicationDbContext();
         }
         // GET: Followees
-        public ActionResult Following()
+        public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
             List<Following> followees = _context.Followings
