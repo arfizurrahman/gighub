@@ -120,11 +120,15 @@ namespace GigHubApp.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs.Single(g => g.Id == gigFormViewModel.Id && g.ArtistId == userId);
+            var gig = _context.Gigs
+                .Include(g => g.Attendances)
+                .Single(g => g.Id == gigFormViewModel.Id && g.ArtistId == userId);
 
             gig.Venue = gigFormViewModel.Venue;
             gig.DateTime = gigFormViewModel.GetDateTime();
             gig.GenreId = gigFormViewModel.Genre;
+
+            gig.Modify(gigFormViewModel.GetDateTime(), gigFormViewModel.Venue, gigFormViewModel.Genre);
 
             _context.SaveChanges();
 
