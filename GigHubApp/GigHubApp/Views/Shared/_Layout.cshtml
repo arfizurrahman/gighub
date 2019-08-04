@@ -9,60 +9,59 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Gighub", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Add a Gig", "Create", "Gigs")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Gighub", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Add a Gig", "Create", "Gigs")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+</div>
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/lib")
+@RenderSection("scripts", required: false)
 <script type="text/x-template" id="notifications-template">
-    <ul>
+    <ul class="notifications">
         <%
         _.each(notifications, function(notification){
         if(notification.type == 1) { %>
-        <li><%= notification.gig.artist.name %> has canceled the gig at <%= notification.gig.venue %> at <%= notification.gig.dateTime  %> </li>
+        <li><span class="highlight"><%= notification.gig.artist.name %></span> has canceled the gig at <strong><%= notification.gig.venue %></strong> at <strong><%= moment(notification.gig.dateTime).format("D MMM HH:mm")  %></strong> </li>
         <% }
         else if(notification.type == 2) {
         var changes = [],
         oldValues = [],
         newValues = [];
         if(notification.originalVenue != notification.gig.venue){
-            changes.push('venue');
-            oldValues.push(notification.originalVenue);
-            newValues.push(notification.gig.venue);
+        changes.push('venue');
+        oldValues.push(notification.originalVenue);
+        newValues.push(notification.gig.venue);
         }
 
         if(notification.originalDateTime != notification.gig.dateTime){
-            changes.push('date/time');
-            oldValues.push(notification.originalDateTime);
-            newValues.push(notification.gig.dateTime);
+        changes.push('date/time');
+        oldValues.push(moment(notification.originalDateTime).format("D MMM HH:mm"));
+        newValues.push(moment(notification.gig.dateTime).format("D MMM HH:mm"));
         }
 
         %>
-        <li><%= notification.gig.artist.name %> has changed the <%= changes.join(' and ')%> of the gig from <%= oldValues.join('/')%> to <%= newValues.join('/')%></li>
+        <li><span class="highlight"><%= notification.gig.artist.name %></span> has changed the <strong><%= changes.join(' and ')%></strong> of the gig from <strong><%= oldValues.join('/')%></strong> to <strong><%= newValues.join('/')%></strong></li>
         <%
         }
         }) %>
@@ -71,11 +70,11 @@
 <script>
     $(function() {
         $.getJSON("/api/notifications",
-            function (notifications) {
+            function(notifications) {
 
-                if (notifications.length == 0) 
+                if (notifications.length == 0)
                     return;
-                
+
                 $(".js-notifications-count")
                     .text(notifications.length)
                     .removeClass("hide")
@@ -88,14 +87,16 @@
                     content: function() {
                         var compiled = _.template($("#notifications-template").html());
                         return compiled({ notifications: notifications });
-                      
+
                     },
-                    placement: "bottom"
+                    placement: "bottom",
+                    template:
+                        '<div class="popover popover-notifications" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
 
                 });
             });
 
-       
+
     });
 </script>
 </body>
