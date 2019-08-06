@@ -104,6 +104,9 @@ span.field-validation-error {
   -ms-border-radius: 7px;
   border-radius: 7px;
   height: 44px;
+  transform: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
 }
 .form-control:focus {
   border-color: #2196f3;
@@ -181,4 +184,7 @@ span.field-validation-error {
 }
 .popover-notifications ul.notifications .highlight {
   font-weight: bold;
+}
+#searchGigs {
+  width: 300px;
 }

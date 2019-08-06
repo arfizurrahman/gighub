@@ -4,7 +4,17 @@
 }
 
 <h2>@Model.Heading</h2>
-
+@using (Html.BeginForm("Search", "Gigs", FormMethod.Post,new { id="searchForm"}))
+{
+    <div class="form-group">
+        <div id="searchGigs" class="input-group">
+            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control", placeholder="Search by artist, genre..." })
+            <span class="input-group-addon" role="button" id="searchIcon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    </div>
+}
 <ul class="gigs voffset4">
     @foreach (var gig in Model.UpcomingGigs)
     {
@@ -68,6 +78,10 @@
                     .fail(function () {
                         alert("Something failed");
                     });
+            });
+
+            $("#searchIcon").click(function () {
+                $("#searchForm").submit();
             });
         });
     </script>
