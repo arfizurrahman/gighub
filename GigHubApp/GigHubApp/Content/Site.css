@@ -17,15 +17,8 @@ body {
 .dl-horizontal dt {
   white-space: normal;
 }
-select {
-  max-width: 280px;
-}
-textarea {
-  max-width: 280px;
-}
 span.field-validation-error {
   color: red;
-  font-weight: bold;
 }
 .voffset {
   margin-top: 2px;
@@ -55,6 +48,7 @@ span.field-validation-error {
 }
 .navbar-inverse .navbar-nav > li > a {
   color: #fff;
+  line-height: 1;
 }
 .navbar-inverse .navbar-nav > .open > a {
   background-color: #f13e3d;
@@ -157,6 +151,8 @@ span.field-validation-error {
 }
 .gigs > li .details .genre {
   font-size: 15px;
+  display: block;
+  margin-bottom: 4px;
 }
 .gigs > li .actions {
   font-size: 15px;
@@ -184,4 +180,9 @@ span.field-validation-error {
 }
 #searchGigs {
   width: 350px;
+}
+@media (max-width: 767px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #fff;
+  }
 }

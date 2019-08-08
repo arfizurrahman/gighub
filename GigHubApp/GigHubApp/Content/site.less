@@ -34,17 +34,8 @@ body {
     }
 }
 
-select {
-    max-width: 280px;
-}
-
-textarea {
-    max-width: 280px;
-}
-
 span.field-validation-error {
     color: @color_1;
-    font-weight: bold;
 }
 
 .voffset {
@@ -84,6 +75,7 @@ span.field-validation-error {
         > li {
             > a {
                 color: @color_2;
+                line-height: 1;
             }
         }
 
@@ -212,6 +204,8 @@ span.field-validation-error {
 
             .genre {
                 font-size: 15px;
+                display:block;
+                margin-bottom: 4px;
             }
         }
 
@@ -255,4 +249,10 @@ span.field-validation-error {
 
 #searchGigs{
     width: 350px;
+}
+
+@media (max-width: 767px){
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+        color: #fff;
+    }
 }
