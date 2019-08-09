@@ -28,5 +28,15 @@ namespace GigHubApp.Persistence.Repositories
                 .Include(f => f.Followee)
                 .ToList();
         }
+
+        public void Add(Following following)
+        {
+            _context.Followings.Add(following);
+        }
+
+        public void Remove(Following following)
+        {
+            _context.Followings.Remove(following);
+        }
     }
 }
