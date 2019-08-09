@@ -53,13 +53,12 @@ namespace GigHubApp.Persistence.Repositories
                 .SingleOrDefault(g => g.Id == gigTd);
         }
 
-        private IEnumerable<Gig> GetUpcomingGigs()
+        public IQueryable<Gig> GetUpcomingGigs()
         {
             return _context.Gigs
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
-                .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled)
-                .ToList();
+                .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
         }
         public void Add(Gig gig)
         {

@@ -1,7 +1,5 @@
 ﻿using GigHubApp.Core;
 using GigHubApp.Core.ViewModels;
-using GigHubApp.Persistence;
-using GigHubApp.Persistence.Repositories;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Linq;
@@ -11,19 +9,15 @@ namespace GigHubApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly AttendanceRepository _attendanceRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public HomeController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _context = new ApplicationDbContext();
-            _attendanceRepository = new AttendanceRepository(_context);
         }
         public ActionResult Index(string query = null)
         {
-            var upcomingGigs = GetUpcomingGigs();
+            var upcomingGigs = _unitOfWork.Gigs.GetUpcomingGigs();
 
             if (!String.IsNullOrWhiteSpace(query))
             {
@@ -35,7 +29,7 @@ namespace GigHubApp.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var attendances = _attendanceRepository.GetFutureAttendances(userId)
+            var attendances = _unitOfWork.Attendances.GetFutureAttendances(userId)
                     .ToLookup(a => a.GigId);
 
             var viewModel = new GigsViewModel
