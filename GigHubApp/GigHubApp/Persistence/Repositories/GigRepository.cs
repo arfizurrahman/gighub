@@ -20,7 +20,7 @@ namespace GigHubApp.Persistence.Repositories
         {
 
             return _context.Gigs
-                 .Include(g => Enumerable.Select<Attendance, ApplicationUser>(g.Attendances, a => a.Attendee))
+                 .Include(g => g.Attendances.Select(a => a.Attendee))
                  .SingleOrDefault(g => g.Id == gigId);
         }
 
