@@ -1,6 +1,6 @@
 ﻿using GigHubApp.Repositories;
 
-namespace GigHubApp.Persistence
+namespace GigHubApp.Core
 {
     public interface IUnitOfWork
     {

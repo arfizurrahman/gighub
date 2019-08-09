@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using GigHubApp.Controllers.Api;
-using GigHubApp.Dtos;
-using GigHubApp.Models;
+using GigHubApp.Core.Dtos;
+using GigHubApp.Core.Models;
 
 namespace GigHubApp
 {
