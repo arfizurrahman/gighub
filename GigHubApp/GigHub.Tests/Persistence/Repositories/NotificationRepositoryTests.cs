@@ -43,20 +43,20 @@ namespace GigHub.Tests.Persistence.Repositories
             userNotifications.Should().BeEmpty();
         }
 
-        [TestMethod]
-        public void GetNewNotificationsWithArtist_GetNotificationsThatAreRead_ShouldNotBeReturned()
-        {
+        //[TestMethod]
+        //public void GetNewNotificationsWithArtist_GetNotificationsThatAreRead_ShouldNotBeReturned()
+        //{
 
-            var notification = Notification.GigCanceled(new Gig());
-            var user = new ApplicationUser() { };
+        //    var notification = Notification.GigCanceled(new Gig());
+        //    var user = new ApplicationUser() { };
 
-            var userNotification = new UserNotification(user, notification) { };
-            userNotification.Read();
+        //    var userNotification = new UserNotification(user, notification) { };
+        //    userNotification.Read();
 
-            _mockUserNotifications.SetSource(new[] { userNotification });
+        //    _mockUserNotifications.SetSource(new[] { userNotification });
 
-            var userNotifications = _repository.GetNewNotificationsWithArtist("2");
-            userNotifications.Should().BeEmpty();
-        }
+        //    var userNotifications = _repository.GetNewNotificationsWithArtist("2");
+        //    userNotifications.Should().BeEmpty();
+        //}
     }
 }
