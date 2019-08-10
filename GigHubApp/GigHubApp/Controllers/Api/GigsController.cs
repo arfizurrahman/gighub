@@ -4,7 +4,7 @@ using System.Web.Http;
 
 namespace GigHubApp.Controllers.Api
 {
-    [System.Web.Http.Authorize]
+    [Authorize]
     public class GigsController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -14,19 +14,16 @@ namespace GigHubApp.Controllers.Api
             _unitOfWork = unitOfWork;
         }
 
-        [System.Web.Http.HttpDelete]
+        [HttpDelete]
         public IHttpActionResult Cancel(int id)
         {
             var gig = _unitOfWork.Gigs.GetGigWithAttendees(id);
 
-            if (gig == null)
+            if (gig == null || gig.IsCanceled)
                 return NotFound();
 
             if (gig.ArtistId != User.Identity.GetUserId())
                 return Unauthorized();
-
-            if (gig.IsCanceled)
-                return NotFound();
 
             gig.Cancel();
 
