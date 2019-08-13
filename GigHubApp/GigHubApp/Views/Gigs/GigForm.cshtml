@@ -3,6 +3,10 @@
     ViewBag.Title = @Model.Heading;
 }
 
+@section styles
+{
+    @Styles.Render("~/Content/datepickercss")
+}
 <h2>@Model.Heading</h2>
 
 <div class="row">
@@ -20,7 +24,7 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Date)
-                @Html.TextBoxFor(m => m.Date, new { @class = "form-control" , placeholder="eg: "+@DateTime.Now.ToString("d MMM yyyy")})
+                @Html.TextBoxFor(m => m.Date, new { @class = "form-control" , placeholder="eg: "+@DateTime.Now.ToString("d MMM yyyy"), id="date", autocomplete=false})
                 @Html.ValidationMessageFor(m => m.Date)
             </div>
             <div class="form-group">
@@ -43,5 +47,12 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
-
+    @Scripts.Render("~/bundles/datepickerjs")
+    <script>
+        $(function() {
+            $("#date").datepicker({
+                dateFormat: 'd M yy'
+            });
+        });
+    </script>
 }

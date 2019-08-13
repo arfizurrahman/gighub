@@ -191,3 +191,8 @@ span.field-validation-error {
     color: #fff;
   }
 }
+/*.ui-datepicker {
+    .ui-datepicker-header {
+        background: #ff4342;
+    }
+}*/

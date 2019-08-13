@@ -23,6 +23,10 @@ namespace GigHubApp
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/bootbox.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datepickerjs").Include(
+                "~/Content/jquery-ui/jquery-ui.min.js"));
+
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -35,6 +39,9 @@ namespace GigHubApp
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/animate.css"));
+
+            bundles.Add(new StyleBundle("~/Content/datepickercss").Include(
+                "~/Content/jquery-ui/jquery-ui.min.css"));
         }
     }
 }

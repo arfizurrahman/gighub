@@ -62,7 +62,7 @@ namespace GigHub.IntegrationTests.Controllers
             _context.SaveChanges();
 
             // Act
-            var result = _controller.Update(new GigFormViewModel()
+            _controller.Update(new GigFormViewModel()
             {
                 Id = gig.Id,
                 Date = DateTime.Today.AddMonths(1).ToString("d MMM yyyy"),
